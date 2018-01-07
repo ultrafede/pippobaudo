@@ -35,7 +35,7 @@
 		        var loc = document.getElementById('searchPlace').value;
 		        utilities.sendRedirect(url);
 		       	var lat = place.geometry.location.lat(), lng = place.geometry.location.lng();	       	
-	       		window.location = "/Parking/Check.basic?loc=" + utilities.sendRedirect(url)+"&lat=" + lat + "&lng=" + lng;
+	       		window.location = "/Parking/Check.basic?loc="+ utilities.sendRedirect(url);+"&lat=" + lat + "&lng=" + lng;
 	       	//	alert(place.geometry.location.lat()+"  "+place.geometry.location.lng());	       		
 			}
 
@@ -55,8 +55,7 @@
         		margin: 0;
         		padding: 0;
       		}		
-		 .searchbar {
-		 background: rgba(220, 220, 220, 0.5);}
+		 .searchbar {background: rgba(220, 220, 220, 0.5);}
       		
 		</style>
 		

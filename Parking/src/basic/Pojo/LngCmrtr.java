@@ -9,6 +9,12 @@ import java.util.Comparator;
 public class LngCmrtr implements Comparator<Parking> {
 
 	@Override
+	/**
+	 * 
+	 * @param p1
+	 * @param p2
+	 * @return
+	 */
 	public int compare(Parking p1, Parking p2) {
 		int i=0;
 		if(p1.getLongitude()>p2.getLongitude()){

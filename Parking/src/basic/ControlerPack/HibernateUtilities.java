@@ -13,6 +13,9 @@ public class HibernateUtilities {
 
 	private static ServiceRegistry serviceRegistry;
 	private static SessionFactory sessionFactory;
+	/**
+	 *@param class HibernateUtilities 
+	 */
 	final static Logger logger = Logger.getLogger(HibernateUtilities.class);
 	static {
 
@@ -35,6 +38,10 @@ public class HibernateUtilities {
 		
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public static SessionFactory getsSessionFactory() {
 		return sessionFactory;
 	}

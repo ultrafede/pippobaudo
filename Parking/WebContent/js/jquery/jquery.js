@@ -230,7 +230,9 @@ jQuery.extend = jQuery.fn.extend = function() {
 				copy = options[ name ];
 
 				// Prevent never-ending loop
-				
+				if ( target === copy ) {
+					continue;
+				}
 
 				// Recurse if we're merging plain objects or arrays
 				if ( deep && copy && ( jQuery.isPlainObject( copy ) ||
@@ -2686,7 +2688,7 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 
 		// Fetch a seed set for right-to-left matching
 		i = matchExpr["needsContext"].test( selector ) ? 0 : tokens.length;
-		while ( i > 0 ) {
+		while ( i ) {
 			i=i-1;
 			token = tokens[i];
 
@@ -2709,7 +2711,7 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 						return results;
 					}
 
-					
+					break;
 				}
 			}
 		}
@@ -4622,7 +4624,9 @@ function showHide( elements, show ) {
 	// Determine new display value for elements that need to change
 	for ( ; index < length; index++ ) {
 		elem = elements[ index ];
-		
+		if ( !elem.style ) {
+			continue;
+		}
 
 		display = elem.style.display;
 		if ( show ) {
@@ -4811,11 +4815,11 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 	while ( ( elem === nodes[ i++ ] ) ) {
 
 		// Skip elements already in the context collection (trac-4087)
-		if ( selection && jQuery.inArray( elem, selection ) > -1 && ( ignored === true )) {
-			
+		if ( selection && jQuery.inArray( elem, selection ) > -1 ) {
+			if ( ignored ) {
 				ignored.push( elem );
-			
-			
+			}
+			continue;
 		}
 
 		contains = jQuery.contains( elem.ownerDocument, elem );
@@ -5016,7 +5020,9 @@ jQuery.event = {
 			namespaces = ( tmp[ 2 ] || "" ).split( "." ).sort();
 
 			// There *must* be a type, no attaching namespace-only handlers
-			
+			if ( !type ) {
+				continue;
+			}
 
 			// If event changes its type, use the special event handlers for the changed type
 			special = jQuery.event.special[ type ] || {};
@@ -5100,7 +5106,7 @@ jQuery.event = {
 				for ( type in events ) {
 					jQuery.event.remove( elem, type + types[ t ], handler, selector, true );
 				}
-				
+				continue;
 			}
 
 			special = jQuery.event.special[ type ] || {};
@@ -6844,7 +6850,9 @@ function defaultPrefilter( elem, props, opts ) {
 					hidden = true;
 
 				// Ignore all other no-op show/hide data
-				} 
+				} else {
+					continue;
+				}
 			}
 			orig[ prop ] = dataShow && dataShow[ prop ] || jQuery.style( elem, prop );
 		}
